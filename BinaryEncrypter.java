@@ -4,7 +4,7 @@ import java.util.*;
  * Encrypts and Decrypts binary and text
  * 
  * @author Nikhil Paranjape (Unguardedsnow)
- * @version April 5 2013 - v3.1.1
+ * @version April 5 2013 - v3.1.4
  * 
  * USE WITH COPYRIGHTS, nah you can use it, but my name should be in it
  */
@@ -28,6 +28,7 @@ public class BinaryEncrypter
 
                 byte [] a = y.getBytes();
                 StringBuilder b = new StringBuilder();
+                //converts text to binary
                 for (byte c :a)
                 {
                     int per = c;
@@ -36,9 +37,10 @@ public class BinaryEncrypter
                         b.append((per & 128) == 0 ? 0:1);
                         per <<= 1;
                     }
+                    //adds two's compliment
                     b.append(' ');
                 }
-                
+                //makes code look cooler
                 Thread.sleep(2000);
                 System.out.println('\f');
                 Thread.sleep(1000);
@@ -69,11 +71,12 @@ public class BinaryEncrypter
                     System.out.println('\f');
                 }
                 catch (Exception e){
-
+                    System.out.println("CONGRATURLATIONS!");
                 }
                 System.out.println("Tell me if you want a normal file name, type normal, or type random for a random number filename");
                 System.out.println("You can also type no to continue without saving");
                 String fileName = x.nextLine();
+                //filename is a random integer, then saved
                 if(fileName.equalsIgnoreCase("random")){
                     int saveName = rand.nextInt(1000000000) + 1;
                     FileWriter outFile = new FileWriter(saveName + ".txt", true);       
@@ -121,7 +124,9 @@ public class BinaryEncrypter
                     System.out.println('\f');
                     System.out.println(text);
                     String output = "";
+                    //removes spaces, spaces cause errors and doesn't convert with the spaces
                     String text2 = text.replaceAll(" ","");
+                    //converts binary to text
                     for(int i = 0; i <= text2.length() - 8; i+=8)
                     {
                         int k = Integer.parseInt(text2.substring(i, i+8), 2);
@@ -161,7 +166,7 @@ public class BinaryEncrypter
                 } 
                 catch (Exception e) {
                     // TODO Auto-generated catch block
-                    System.out.println("Error, due to not finding the file: " + e);
+                    System.out.println("Error!: " + e);
                 }
             }    
         }
